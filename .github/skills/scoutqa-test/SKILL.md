@@ -1,6 +1,6 @@
 ---
 name: scoutqa-test
-description: This skill should be used when the user asks to "test this website", "run exploratory testing", "check for accessibility issues", "verify the login flow works", "find bugs on this page", or requests automated QA testing. Triggers on web application testing scenarios including smoke tests, accessibility audits, e-commerce flows, and user flow validation using ScoutQA CLI. IMPORTANT: Use this skill proactively after implementing web application features to verify they work correctly - don't wait for the user to ask for testing.
+description: This skill should be used when the user asks to "test this website", "run exploratory testing", "check for accessibility issues", "verify the login flow works", "find bugs on this page", or requests automated QA testing. Triggers on web application testing scenarios including smoke tests, accessibility audits, e-commerce flows, and user flow validation using ScoutQA CLI. IMPORTANT! Use this skill proactively after implementing web application features to verify they work correctly - don't wait for the user to ask for testing.
 ---
 
 # ScoutQA Testing Skill
@@ -19,6 +19,7 @@ Use this skill in two scenarios:
 2. **Proactive verification** - After implementing web features, automatically run tests to verify the implementation works correctly
 
 **Example proactive usage:**
+
 - After implementing a login form → Test the authentication flow
 - After adding form validation → Verify validation rules and error handling
 - After building a checkout flow → Test the end-to-end purchase process
@@ -33,6 +34,7 @@ Use this skill in two scenarios:
 Copy this checklist and track your progress:
 
 Testing Progress:
+
 - [ ] Write specific test prompt with clear expectations
 - [ ] Run scoutqa command in background
 - [ ] Inform user of execution ID and browser URL
@@ -47,6 +49,7 @@ See "Writing Effective Prompts" section below for guidelines.
 **IMPORTANT**: Use the Bash tool's timeout parameter (5000ms = 5 seconds) to capture execution details:
 
 When calling the Bash tool, set `timeout: 5000` as a parameter:
+
 - This is the Bash tool's built-in timeout parameter in Claude Code (NOT the Unix `timeout` command)
 - After 5 seconds, the Bash tool returns control with a task ID and the process continues running in the background
 - This is different from Unix `timeout` which kills the process - here the process keeps running
@@ -68,6 +71,7 @@ After the 5-second timeout, the Bash tool returns a task ID and the command cont
 **Step 3: Inform user of execution ID and browser URL**
 
 After the Bash tool returns with the task ID (having captured the execution details in the first 5 seconds), inform the user of:
+
 - The ScoutQA execution ID and browser URL so they can monitor progress in their browser
 - The background task ID if they want to check local command output later
 
@@ -305,9 +309,9 @@ ScoutQA tests run remotely on ScoutQA's infrastructure. After starting a test wi
 
 ## Troubleshooting
 
-| Issue                        | Solution                                           |
-| ---------------------------- | -------------------------------------------------- |
-| `command not found: scoutqa` | Install CLI: `npm i -g @scoutqa/cli@latest`        |
-| Auth expired / unauthorized  | Run `scoutqa auth login`                           |
-| Test hangs or needs input    | Use `scoutqa send-message --execution-id`          |
+| Issue                        | Solution                                                    |
+| ---------------------------- | ----------------------------------------------------------- |
+| `command not found: scoutqa` | Install CLI: `npm i -g @scoutqa/cli@latest`                 |
+| Auth expired / unauthorized  | Run `scoutqa auth login`                                    |
+| Test hangs or needs input    | Use `scoutqa send-message --execution-id`                   |
 | Check test results           | Visit browser URL or `scoutqa get-execution --execution-id` |
